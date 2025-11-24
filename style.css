@@ -2563,64 +2563,101 @@ body {
 }
 
 
-
-/* ===== ヒーロー共通（PC向け）===== */
-.hero {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 60%, #f5f9ff 100%);
+/* =========================
+   こんなモヤモヤセクション
+   ========================= */
+.section.problems {
+  background: #2e3b5a;            /* 濃いネイビー系 */
+  padding: 80px 0;
 }
 
-.hero__inner {
+.problems__inner {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 80px 16px 140px;
+  padding: 0 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.problems__title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.problems__divider {
+  width: 140px;
+  height: 2px;
+  margin: 24px auto 0;
+  background: linear-gradient(90deg, #ffffff 0%, #9fbafc 100%);
+  border-radius: 999px;
+}
+
+.problems__cards {
+  margin-top: 48px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.problems-card {
+  background: #f6f8ff;
+  border-radius: 18px;
+  padding: 28px 20px 24px;
+  width: 180px;
+  max-width: 220px;
+  flex: 1 1 180px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.problems-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5d8bff, #8fb5ff);
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  font-size: 32px;
+  color: #ffffff;
+  margin-bottom: 16px;
 }
 
-.hero__content {
-  flex: 1 1 55%;
-  z-index: 2;
+.problems-card__text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #24304a;
 }
 
-.hero__image {
-  flex: 0 0 auto;
-  margin-left: 40px;
-}
-
-.hero__image img {
-  display: block;
-  width: 360px;
-  height: auto;
-}
-
-/* ===== スマホ用（ここがポイント）===== */
+/* スマホ対応 */
 @media (max-width: 768px) {
-
-  /* women.png を背景として hero に合体させる */
-  .hero {
-    background:
-      linear-gradient(135deg, #f5f9ff 0%, #ffffff 60%, #f5f9ff 100%),
-      url("img/women.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-size: 260px auto;
+  .section.problems {
+    padding: 56px 0;
   }
 
-  .hero__inner {
-    padding: 60px 20px 220px; /* 下に余白を取り、背景の女性の足元分を確保 */
-    display: block;           /* スマホでは縦並びにしてOK（画像は背景化するので） */
+  .problems__title {
+    font-size: 22px;
+    line-height: 1.6;
   }
 
-  .hero__content {
-    max-width: 100%;
+  .problems__cards {
+    flex-direction: column;
+    align-items: center;
   }
 
-  /* 実際の <img> はスマホでは隠す */
-  .hero__image {
-    display: none;
+  .problems-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .problems-card__text {
+    font-size: 15px;
   }
 }
+
 
