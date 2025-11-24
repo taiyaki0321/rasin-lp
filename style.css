@@ -2660,4 +2660,46 @@ body {
   }
 }
 
+.section--problem-target {
+  background: #eef2fb;
+  padding: 80px 0;
+}
+
+.problem-target-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 40px auto 0;
+}
+
+.problem-target-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 20px 26px;
+  box-shadow: 0 18px 35px rgba(15, 35, 95, 0.12);
+  flex: 1 1 200px;
+  max-width: 210px;
+  min-width: 180px;
+}
+
+.problem-target-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 767px) {
+  .problem-target-list {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .problem-target-item {
+    max-width: 260px;
+    width: 100%;
+  }
+}
+
 
