@@ -2474,20 +2474,7 @@ body {
 }
 
 /* スマホ対応 */
-@media (max-width: 768px) {
-  .header__inner {
-    padding: 10px 14px;
-  }
 
-  .header-logo-img {
-    height: 38px;
-  }
-
-  .header__nav-cta {
-    font-size: 14px;
-    padding: 10px 14px;
-  }
-}
 
 /* ===== RASINとは（ホワイトアカデミー風） ===== */
 
@@ -2575,4 +2562,61 @@ body {
   font-weight: 600;
 }
 
+
+
+/* ===== ヒーローセクション 共通 ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 60%, #f5f9ff 100%);
+}
+
+.hero__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 16px 140px; /* 下を多めにとって写真をかぶせる */
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.hero__content {
+  flex: 1 1 55%;
+  z-index: 2;             /* 写真より前面に出す */
+}
+
+.hero__image {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;   /* 画像の上でもボタンが押しやすいように */
+}
+
+.hero__image img {
+  display: block;
+  width: 360px;
+  height: auto;
+}
+
+/* ===== スマホ表示 ===== */
+@media (max-width: 768px) {
+  .hero__inner {
+    padding: 60px 20px 80px;
+  }
+
+  /* テキスト幅を少し絞って、右下に写真スペースを作る */
+  .hero__content {
+    max-width: 70%;
+  }
+
+  .hero__image {
+    right: -40px;   /* 画面外にはみ出させて“寄り”の写真感を出す */
+    bottom: -20px;
+  }
+
+  .hero__image img {
+    width: 280px;
+  }
+}
 
