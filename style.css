@@ -2564,7 +2564,7 @@ body {
 
 
 
-/* ===== ヒーローセクション 共通 ===== */
+/* ===== ヒーロー共通（PC向け）===== */
 .hero {
   position: relative;
   overflow: hidden;
@@ -2574,7 +2574,7 @@ body {
 .hero__inner {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 80px 16px 140px; /* 下を多めにとって写真をかぶせる */
+  padding: 80px 16px 140px;
   display: flex;
   align-items: center;
   position: relative;
@@ -2582,15 +2582,12 @@ body {
 
 .hero__content {
   flex: 1 1 55%;
-  z-index: 2;             /* 写真より前面に出す */
+  z-index: 2;
 }
 
 .hero__image {
-  position: absolute;
-  right: 4%;
-  bottom: 0;
-  z-index: 1;
-  pointer-events: none;   /* 画像の上でもボタンが押しやすいように */
+  flex: 0 0 auto;
+  margin-left: 40px;
 }
 
 .hero__image img {
@@ -2599,24 +2596,31 @@ body {
   height: auto;
 }
 
-/* ===== スマホ表示 ===== */
+/* ===== スマホ用（ここがポイント）===== */
 @media (max-width: 768px) {
+
+  /* women.png を背景として hero に合体させる */
+  .hero {
+    background:
+      linear-gradient(135deg, #f5f9ff 0%, #ffffff 60%, #f5f9ff 100%),
+      url("img/women.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 260px auto;
+  }
+
   .hero__inner {
-    padding: 60px 20px 80px;
+    padding: 60px 20px 220px; /* 下に余白を取り、背景の女性の足元分を確保 */
+    display: block;           /* スマホでは縦並びにしてOK（画像は背景化するので） */
   }
 
-  /* テキスト幅を少し絞って、右下に写真スペースを作る */
   .hero__content {
-    max-width: 70%;
+    max-width: 100%;
   }
 
+  /* 実際の <img> はスマホでは隠す */
   .hero__image {
-    right: -40px;   /* 画面外にはみ出させて“寄り”の写真感を出す */
-    bottom: -20px;
-  }
-
-  .hero__image img {
-    width: 280px;
+    display: none;
   }
 }
 
