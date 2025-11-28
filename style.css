@@ -2996,3 +2996,26 @@ body {
 }
 
 
+.law-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e0e4ef;
+}
+
+.law-row dt {
+  font-weight: 600;
+  color: #374151;
+}
+
+.law-row dd {
+  margin: 0;
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .law-row {
+    grid-template-columns: 1fr;
+  }
+}
