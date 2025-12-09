@@ -3044,3 +3044,23 @@ body {
 .problems__cards::-webkit-scrollbar {
   display: none;
 }
+
+.moyamoya-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.moya-card {
+  min-width: 250px;   /* カード幅 */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  scroll-snap-align: center;
+  text-align: center;
+  font-size: 15px;
+}
