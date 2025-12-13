@@ -3133,7 +3133,8 @@ body {
 .hero.hero--bg{
   position: relative;
   min-height: 85vh;
-  background-image: url("img/women.png");
+  background-image: url("./img/women.png");
+
   background-repeat: no-repeat;
 
   background-size: contain;      /* ★全体表示 */
@@ -3149,4 +3150,6 @@ body {
     background-size: contain;
   }
 }
+
+
 
