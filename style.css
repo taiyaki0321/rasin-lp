@@ -3186,44 +3186,7 @@ body {
   margin-bottom: 8px;
 }
 
-@media (max-width: 768px) {
 
-  /* ヒーロー全体を横並び風に */
-  .hero.hero--bg {
-    display: flex;
-    align-items: center;
-    min-height: 80vh;
-
-    /* 背景を右側に寄せる */
-    background-position: right center;
-    background-size: contain;
-  }
-
-  /* テキストエリアを左側に固定 */
-  .hero__inner {
-    width: 55%;
-    padding-left: 16px;
-    padding-right: 8px;
-  }
-
-  /* 文字ブロックを読みやすく */
-  .hero__content {
-    background: rgba(255, 255, 255, 0.92);
-    padding: 16px 14px;
-    border-radius: 12px;
-  }
-
-  /* 見出し調整 */
-  .hero__title {
-    font-size: 22px;
-    line-height: 1.4;
-  }
-
-  .hero__subtitle {
-    font-size: 14px;
-  }
-
-}
 
 @media (max-width: 768px) {
 
