@@ -3225,5 +3225,15 @@ body {
 
 }
 
+@media (max-width: 768px) {
+
+  .hero.hero--bg {
+    background-size: contain;
+    background-position: 180% center;
+    /* ↑ 数字を上げるほど、さらに右へ行く */
+  }
+
+}
+
 
 
