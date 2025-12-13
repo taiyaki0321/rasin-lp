@@ -3092,6 +3092,7 @@ body {
   z-index: 2;
   width: 100%;
   padding: 0 24px;
+  margin-top: 1px; /* ← これで位置をコントロール */
 }
 
 .hero__content {
@@ -3142,7 +3143,7 @@ body {
   background-position: right bottom; /* ★右下に置くと全体入りやすい */
   background-color: #eef5ff;     /* 余白の色（背景と合わせる） */
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* ← 上寄せ */
 }
 @media (max-width: 768px){
   .hero.hero--bg{
@@ -3166,7 +3167,7 @@ body {
 
 
 .hero__title {
-  font-size: 40px;
+  font-size: 60px;
   line-height: 1.4;
   margin-bottom: 16px;
 }
@@ -3196,7 +3197,53 @@ body {
     /* ↑ 数字を上げるほど、さらに右へ行く */
   }
 
+.hero__title-main,
+.hero__title-sub{
+  display: block;
+  white-space: nowrap; /* ← 途中改行を禁止 */
 }
+@media (max-width: 768px){
+  .hero__title-main,
+  .hero__title-sub{
+    white-space: normal; /* ← スマホは折り返しOKに戻す */
+  }
+}
+.hero__inner{
+  max-width: 1000px;
+}}
+
+
+@media (min-width: 769px) {
+  .hero__inner {
+    max-width: none !important; /* 制限解除 */
+    width: 58% !important;      /* 左カラムを広げる */
+  }
+
+  .hero__content {
+    max-width: none !important; /* 制限解除 */
+    width: 100% !important;
+  }
+}
+@media (min-width: 769px) {
+  .hero__title-main,
+  .hero__title-sub {
+    white-space: nowrap;
+  }
+}
+@media (min-width: 769px) {
+  .hero__inner {
+    padding-left: 10px;  /* 数字は好みで 40〜80 */
+    padding-right: 100px;
+  }
+}
+@media (min-width: 769px) {
+  .hero__inner {
+    margin-left: 0;
+    margin-right: auto;   /* ← 左寄せの決定打 */
+  }
+}
+
+
 
 
 
