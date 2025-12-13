@@ -3070,7 +3070,8 @@ body {
 .hero--bg {
   position: relative;
   min-height: 100vh; /* 画面いっぱい */
-  background-image: url("img/women.png");
+  background-image: url("./img/women.png");
+
   background-size: cover;        /* 全体にフィット */
   background-position: center;   /* 顔が中央に来る */
   background-repeat: no-repeat;
