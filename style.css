@@ -3265,6 +3265,12 @@ body {
     line-height: 1.8;
   }
 }
+@media (min-width: 769px) {
+  .hero__inner {
+    max-width: 800px;   /* ← 600 → 800 など */
+  }
+}
+
 
 
 
