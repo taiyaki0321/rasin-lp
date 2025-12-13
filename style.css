@@ -3173,7 +3173,7 @@ body {
 }
 @media (max-width: 768px) {
   .hero__title {
-    font-size: 36px;
+    font-size: 37px;
   }
 
   .hero__content {
@@ -3243,14 +3243,14 @@ body {
   }
 }
 .hero__tagline {
-  font-size: 16px;     /* 13〜14pxならUP */
+  font-size:20px;     /* 13〜14pxならUP */
   font-weight: 600;
   margin-bottom: 12px;
   letter-spacing: 0.05em;
 }
 @media (max-width: 768px) {
   .hero__tagline {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 .hero__description {
@@ -3265,11 +3265,12 @@ body {
     line-height: 1.8;
   }
 }
-@media (min-width: 769px) {
-  .hero__inner {
-    max-width: 800px;   /* ← 600 → 800 など */
-  }
+.hero__inner,
+.hero__content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
+
 
 
 
