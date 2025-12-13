@@ -3271,6 +3271,19 @@ body {
   padding-top: 0 !important;
 }
 
+@media (max-width: 768px) {
+  .hero.hero--bg {
+    /* 写真を小さくする（ここがメイン） */
+    background-size: 75% auto;      /* 65%〜85%で調整OK */
+
+    /* 写真を右にずらす（ここもメイン） */
+    background-position: 120% 70%;  /* 110%〜140%で調整OK */
+
+    background-repeat: no-repeat;
+  }
+}
+
+
 
 
 
