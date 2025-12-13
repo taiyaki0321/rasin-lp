@@ -3167,7 +3167,7 @@ body {
 
 
 .hero__title {
-  font-size: 60px;
+  font-size: 55px;
   line-height: 1.4;
   margin-bottom: 16px;
 }
@@ -3242,6 +3242,33 @@ body {
     margin-right: auto;   /* ← 左寄せの決定打 */
   }
 }
+.hero__tagline {
+  font-size: 16px;     /* 13〜14pxならUP */
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+@media (max-width: 768px) {
+  .hero__tagline {
+    font-size: 14px;
+  }
+}
+.hero__description {
+  font-size: 20px;     /* 15〜16pxならUP */
+  line-height: 1.9;
+  margin-top: 16px;
+  color: #1f2937;      /* 少し濃く */
+}
+@media (max-width: 768px) {
+  .hero__description {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
+
+
+
+
 
 
 
