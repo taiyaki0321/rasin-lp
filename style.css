@@ -3170,4 +3170,27 @@ body {
   border-radius: 16px;
   max-width: 520px;
 }
+.hero__title {
+  font-size: 36px;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 28px;
+  }
+
+  .hero__content {
+    padding: 24px;
+  }
+}
+
+.hero__tagline {
+  color: #1e4bd8;   /* RASINブルー */
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+
+
 
