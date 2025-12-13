@@ -3282,6 +3282,10 @@ body {
     background-repeat: no-repeat;
   }
 }
+@media (max-width: 768px) {
+  .hero__inner { width: 60%; }
+}
+
 
 
 
