@@ -3152,5 +3152,22 @@ body {
   }
 }
 
+.hero__content {
+  color: #1a1a1a; /* 濃い黒（真っ黒より柔らかい） */
+}
 
+.hero__title {
+  color: #0b1f44;   /* ネイビー寄り（信頼感UP） */
+  font-weight: 700;
+}
+.hero__subtitle {
+  color: #333;
+}
+
+.hero__content {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 32px 36px;
+  border-radius: 16px;
+  max-width: 520px;
+}
 
