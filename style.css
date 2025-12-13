@@ -3285,35 +3285,6 @@ body {
 .title-line {
   display: block;
 }
-@media (min-width: 769px) {
-  .hero__title .line-2,
-  .hero__title .line-3 {
-    display: inline-block; /* ← inline だと負けることがある */
-  }
-
-  .hero__title .line-2::after {
-    content: " ";
-  }
-}
-
-@media (max-width: 768px) {
-  .line-1,
-  .line-2,
-  .line-3 {
-    display: block;
-  }
-
-  .hero__title {
-    line-height: 1.35;
-  }
-}
-@media (max-width: 768px) {
-  .hero__title {
-    font-size: 32px;
-  }
-}
-
-
 
 
 
