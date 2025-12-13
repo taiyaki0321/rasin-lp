@@ -131,7 +131,7 @@ a {
 }
 
 .hero__title {
-  font-size: 36px;          /* 32 → 36（PC） */
+  font-size: 40px;          /* 32 → 36（PC） */
   line-height: 1.4;
   font-weight: 800;         /* 太くする */
   margin: 0 0 16px;
@@ -3166,13 +3166,13 @@ body {
 
 
 .hero__title {
-  font-size: 36px;
+  font-size: 40px;
   line-height: 1.4;
   margin-bottom: 16px;
 }
 @media (max-width: 768px) {
   .hero__title {
-    font-size: 28px;
+    font-size: 36px;
   }
 
   .hero__content {
