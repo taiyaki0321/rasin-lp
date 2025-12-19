@@ -3310,6 +3310,16 @@ body {
   gap: 10px;
   overflow: hidden;       /* 変なはみ出し防止 */
 }
+.header__cta {
+  white-space: nowrap;     /* 2行になって伸びるのを防ぐ */
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  max-width: 70vw;         /* 画面幅に対して暴れない */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 長い時は…にする */
+}
+
 
 
 
