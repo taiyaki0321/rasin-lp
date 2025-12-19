@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>自己理解検定｜RASIN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f6f7fb;
+      margin: 0;
+      color: #111;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 24px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .question {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .options label {
+      display: block;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .options input {
+      margin-right: 8px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 999px;
+      border: none;
+      background: #2563eb;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .result {
+      display: none;
+    }
+    .score {
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
+    }
+    .grade {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .cta {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      background: #06c755;
+      color: #fff;
+      padding: 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🧭 自己理解検定</h1>
+  <p class="subtitle">あなたの自己理解レベルを100点満点で判定します</p>
+
+  <form id="testForm">
+
+    <!-- Aセクション -->
+    <div class="card">
+      <h2>A｜自己認知の精度</h2>
+      <div class="question">A1. 自分の価値観TOP3を理由付きで説明できる</div>
+      <div class="options">
+        <label><input type="radio" name="A1" value="7" required>7 非常に当てはまる</label>
+        <label><input type="radio" name="A1" value="5">5 やや当てはまる</label>
+        <label><input type="radio" name="A1" value="3">3 どちらとも言えない</label>
+        <label><input type="radio" name="A1" value="1">1 当てはまらない</label>
+      </div>
+    </div>
+
+    <!-- Bセクション -->
+    <div class="card">
+      <h2>B｜行動・事実ベース</h2>
+      <div class="question">B1. 直近3ヶ月で自己理解のためにやったこと</div>
+      <div class="options">
+        <label><input type="radio" name="B1" value="0" required>何もしていない</label>
+        <label><input type="radio" name="B1" value="1">記事・動画を見た</label>
+        <label><input type="radio" name="B1" value="3">ワークをやった</label>
+        <label><input type="radio" name="B1" value="4">人に話してFBをもらった</label>
+      </div>
+    </div>
+
+    <!-- Cセクション -->
+    <div class="card">
+      <h2>C｜トレードオフ</h2>
+      <div class="question">C1. どちらを選ぶ？</div>
+      <div class="options">
+        <label><input type="radio" name="C1" value="A" required>A 年収高・裁量小</label>
+        <label><input type="radio" name="C1" value="B">B 年収普通・裁量大</label>
+      </div>
+    </div>
+
+    <!-- Dセクション -->
+    <div class="card">
+      <h2>D｜言語化チェック</h2>
+      <div class="question">D1. あなたの価値観TOP3（1語ずつ）</div>
+      <textarea name="D1" placeholder="例：成長／自由／誠実"></textarea>
+    </div>
+
+    <button class="btn" type="submit">結果を見る</button>
+  </form>
+
+  <!-- 結果 -->
+  <div class="card result" id="result">
+    <div class="score" id="scoreText"></div>
+    <div class="grade" id="gradeText"></div>
+
+    <a class="cta" href="https://lin.ee/MR1jOBx" target="_blank">
+      無料相談で自己理解を完成させる
+    </a>
+  </div>
+</div>
+
+<script>
+document.getElementById("testForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let score = 0;
+
+  // Aセクション（例：最大7点）
+  score += Number(document.querySelector('input[name="A1"]:checked').value);
+
+  // Bセクション
+  score += Number(document.querySelector('input[name="B1"]:checked').value);
+
+  // Cセクション（一貫性は簡易：選択しただけで3点）
+  score += 3;
+
+  // Dセクション（文字数で簡易判定）
+  const d1 = document.querySelector('textarea[name="D1"]').value;
+  if (d1.length > 20) score += 6;
+  else if (d1.length > 5) score += 3;
+
+  // 100点換算（今回は簡易）
+  const finalScore = Math.min(Math.round((score / 20) * 100), 100);
+
+  let grade = "";
+  if (finalScore < 40) grade = "5級｜今すぐ自己分析すべき";
+  else if (finalScore < 55) grade = "4級｜理解できていると勘違いしがち";
+  else if (finalScore < 75) grade = "3級｜努力は見えるが不足";
+  else if (finalScore < 90) grade = "2級｜就活実用レベル";
+  else grade = "1級｜文句なし";
+
+  document.getElementById("scoreText").innerText = finalScore + "点";
+  document.getElementById("gradeText").innerText = grade;
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+</script>
+
+</body>
+</html>
