@@ -13,6 +13,10 @@
   --header-height: 64px;
   --z-header: 1000;
 }
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 
 /* reset簡易版 */
 *,
@@ -3284,6 +3288,27 @@ body {
 }
 .title-line {
   display: block;
+}
+
+.header {
+  position: sticky; /* fixedなら fixedでもOK */
+  top: 0;
+  z-index: 999;
+  background: #fff;
+}
+
+/* ヘッダーの中身（ロゴ＋ボタンの横並びの器） */
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* ✅ ここが重要 */
+  flex-wrap: nowrap;      /* 折り返し禁止 */
+  height: 64px;           /* 高さ固定（好みで56〜72） */
+  padding: 0 12px;        /* スマホで横padding小さく */
+  gap: 10px;
+  overflow: hidden;       /* 変なはみ出し防止 */
 }
 
 
