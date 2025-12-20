@@ -56,6 +56,10 @@ const QUESTIONS = [
 { section:"C", type:"ab", text:"短期成果型（営業・運用） vs 長期成果型（企画・戦略）", a:"A：短期成果型（営業・運用）", b:"B：長期成果型（企画・戦略）" },
 
   { section:"D", type:"text", text:"あなたの価値観TOP3を1語ずつ書いてください（例：成長／自由／信頼）" },
+  {
+  section: "D",type: "text",text: "あなたの強みを「行動が分かる1文」で書いてください（例：相手の話を要約し、次にやるべき行動を整理できる）"
+}
+
 ];
 
 const answers = new Array(QUESTIONS.length).fill(null);
