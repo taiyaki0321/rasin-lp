@@ -3525,7 +3525,7 @@ body {
 }
 @media (max-width: 768px) {
   .header-actions {
-    margin-right: 10px; /* ← 右に余白を作る＝左に寄る */
+    margin-right: 0px; /* ← 右に余白を作る＝左に寄る */
   }
 }
 .header__nav-cta {
