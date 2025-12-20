@@ -3519,6 +3519,13 @@ body {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 24px;
+  }
+}
+
+
+@media (max-width: 768px) {
   .header__inner {
     padding: 0 2px; /* ← 左右に余白を作る */
   }
