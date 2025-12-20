@@ -3320,6 +3320,55 @@ body {
   text-overflow: ellipsis; /* 長い時は…にする */
 }
 
+.header__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* ロゴがデカすぎて折り返すのを防ぐ */
+.header__logo{
+  flex:0 0 auto;
+}
+
+.header-logo-img{
+  height:34px;
+  width:auto;
+  display:block;
+}
+
+/* ボタンが折り返して縦になるのを防ぐ */
+.header-actions a{
+  white-space:nowrap;
+}
+
+@media (max-width:768px){
+  .header__inner{
+    flex-direction:row !important;
+  }
+
+  .header-logo-img{
+    height:30px;
+  }
+
+  /* 画面が狭い時は診断ボタンを小さめに */
+  .btn-diagnosis{
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  .header__nav-cta{
+    padding:9px 12px;
+    font-size:12px;
+  }
+}
 
 
 
