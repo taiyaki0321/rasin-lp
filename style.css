@@ -3543,6 +3543,58 @@ body {
     padding: 10px 20px;
     font-size: 14px;
   }
+/* ===== スマホ用：ヘッダーを左寄せ＋ボタン縮小 ===== */
+@media (max-width: 768px) {
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* ← 左寄せ */
+    gap: 10px;
+    padding: 10px 12px;         /* ← 端の余白を確保（切れ防止） */
+  }
+
+  /* ロゴは小さめ固定 */
+  .header__logo {
+    flex: 0 0 auto;
+  }
+  .header-logo-img {
+    height: 34px;
+    width: auto;
+    display: block;
+  }
+
+  /* ボタン2つをまとめて左に寄せる */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* ← 左寄せ */
+    gap: 8px;
+    margin-left: 6px;           /* ロゴとの距離 */
+    flex: 1 1 auto;             /* ここが伸びて、右切れを防ぐ */
+    min-width: 0;               /* 重要：iOSでのはみ出し防止 */
+  }
+
+  /* 診断ボタン（小さく） */
+  .btn-diagnosis {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 999px;
+    white-space: nowrap;        /* 折り返し禁止 */
+    flex: 0 0 auto;
+  }
+
+  /* LINEボタン（小さく＋はみ出し防止） */
+  .header__nav-cta {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 999px;
+    white-space: nowrap;        /* 折り返し禁止 */
+    flex: 0 1 auto;             /* 重要：縮められるようにする */
+    max-width: 100%;            /* 重要：右切れ防止 */
+    overflow: hidden;
+    text-overflow: ellipsis;    /* 万一長い時は「…」で省略 */
+  }
+}
 
 
 
