@@ -95,7 +95,11 @@ function render(){
     for (let v=1; v<=7; v++){
       const btn = document.createElement("button");
       btn.className = "choice";
-      btn.textContent = `${v}（${v===1?"全く当てはまらない":v===7?"非常に当てはまる":"中間"}）`;
+      let label = "";
+    if (v === 1) label = "（全く当てはまらない）";
+    if (v === 7) label = "（非常に当てはまる）";
+
+    btn.textContent = `${v}${label}`;
       if (answers[i] === v) btn.classList.add("is-selected");
       btn.onclick = () => {
         answers[i] = v;
