@@ -3520,15 +3520,18 @@ body {
 
 @media (max-width: 768px) {
   .header__inner {
-    padding: 0 20px; /* ← 左右に余白を作る */
+    padding: 0 12px; /* ← 左右に余白を作る */
   }
 }
 @media (max-width: 768px) {
   .header-actions {
-    margin-right: 20px; /* ← 右に余白を作る＝左に寄る */
+    margin-right: 12px; /* ← 右に余白を作る＝左に寄る */
   }
 }
-
+.header__nav-cta {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
 
 
 
