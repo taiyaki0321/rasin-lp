@@ -3596,6 +3596,32 @@ body {
   }
 }
 
+/* ヘッダー：自己理解検定ボタン（枠線のみ） */
+.btn-diagnosis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 14px;              /* ← スマホで切れないサイズ */
+  font-size: 13px;                /* ← 少し小さめ */
+  font-weight: 600;
+
+  color: #2f5be7;                 /* 青文字 */
+  background: transparent;        /* 塗りつぶしなし */
+  border: 2px solid #2f5be7;      /* 青の枠線 */
+  border-radius: 9999px;          /* pill型 */
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+/* ホバー（PC用） */
+.btn-diagnosis:hover {
+  background: rgba(47, 91, 231, 0.08);
+}
+
 
 
 
