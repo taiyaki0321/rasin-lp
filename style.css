@@ -3523,6 +3523,10 @@ body {
     padding-top: 0px;
   }
 }
+.hero {
+  padding-top: 60px; /* or 140px */
+}
+
 
 
 @media (max-width: 768px) {
