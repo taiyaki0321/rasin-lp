@@ -3523,6 +3523,12 @@ body {
     padding: 0 12px; /* ← 左右に余白を作る */
   }
 }
+@media (max-width: 768px) {
+  .header-actions {
+    margin-right: 6px; /* ← 右に余白を作る＝左に寄る */
+  }
+}
+
 
 
 
