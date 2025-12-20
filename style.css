@@ -3525,16 +3525,10 @@ body {
 }
 @media (max-width: 768px) {
   .header-actions {
-    margin-right: 6px; /* ← 右に余白を作る＝左に寄る */
+    margin-right: 12px; /* ← 右に余白を作る＝左に寄る */
   }
 }
-@media (max-width: 768px) {
-  .header__nav-cta {
-    padding: 10px 14px;   /* 横paddingを縮める */
-    font-size: 13px;
-    border-radius: 999px;
-  }
-}
+
 
 
 
