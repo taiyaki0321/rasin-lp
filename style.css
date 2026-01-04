@@ -3980,3 +3980,39 @@ body {
     margin-top: 6px;
   }
 }
+
+/* ===== スマホ：右切れ対策（全体を左寄せ） ===== */
+@media (max-width: 768px){
+
+  /* 2カラムの右側を細くして、左に寄せる */
+  .hero__inner{
+    grid-template-columns: 1.25fr 0.75fr; /* ←右を細く */
+    gap: 10px;
+    padding-left: 12px;   /* 全体を少し左に寄せ */
+    padding-right: 8px;   /* 右余白を減らす */
+  }
+
+  /* 右側（画像）をさらに内側へ */
+  .hero__visual{
+    justify-content: flex-end;
+    padding-right: 10px;  /* 右に張り付かないように */
+  }
+
+  /* 画像自体を小さくして右はみ出しを防ぐ */
+  .hero__img{
+    max-width: 210px;     /* ここが効く */
+  }
+
+  /* 実績カードの横並びが右にはみ出すのを防ぐ */
+  .hero__stats{
+    width: 100%;
+    overflow-x: hidden;   /* まずははみ出し自体を隠す（※） */
+  }
+}
+
+/* さらに小さい端末(iPhone mini等)はカードを縮める */
+@media (max-width: 420px){
+  .stat-card{ padding: 9px; }
+  .stat-value{ font-size: 24px; }
+  .hero__img{ max-width: 190px; }
+}
