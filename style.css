@@ -3672,3 +3672,177 @@ body {
 
 
 
+
+
+/* ===== Hero 安定版（まず崩れを止める） ===== */
+.hero--bg{
+  background: #d7e9f1;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 24px 28px;
+}
+
+/* 固定ヘッダーならここは調整 */
+.hero--bg{ padding-top: 140px; }
+
+.hero__inner{
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: end;
+}
+
+.hero__content{ z-index: 2; }
+
+.hero__tagline{
+  font-size: 14px;
+  font-weight: 800;
+  color: #1f4db6;
+  letter-spacing: .06em;
+  margin: 0 0 10px;
+}
+
+.hero__title{
+  font-size: 44px;
+  line-height: 1.25;
+  margin: 0 0 18px;
+  color: #24324a;
+  font-weight: 900;
+}
+
+.hero__lead{
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(36,50,74,.85);
+  margin: 0 0 18px;
+}
+
+.hero__cta{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.btn-primary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #1f4db6;
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.btn-ghost{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: transparent;
+  border: 2px solid #1f4db6;
+  color: #1f4db6;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.hero__note{
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(36,50,74,.55);
+}
+
+/* 右人物：まずは「はみ出し控えめ」で */
+.hero__visual{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.hero__person{
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  transform: translateX(6%);
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.18));
+}
+
+/* 実績カード：絶対配置をやめて普通に下へ */
+.hero__stats{
+  max-width: 1120px;
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  position: relative;
+  z-index: 3; /* 人物より手前/奥はここで調整できる */
+}
+
+.stat{
+  background: rgba(255,255,255,.82);
+  border-radius: 14px;
+  padding: 14px 14px 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  backdrop-filter: blur(6px);
+}
+
+.stat__label{
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(36,50,74,.7);
+  margin-bottom: 6px;
+}
+
+.stat__value{
+  font-size: 42px;
+  font-weight: 900;
+  color: #f08b7a;
+  line-height: 1;
+}
+
+.stat__value span{ font-size: 16px; }
+
+.stat__note{
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(36,50,74,.55);
+}
+
+.hero__footnote{
+  max-width: 1120px;
+  margin: 10px auto 0;
+  font-size: 11px;
+  color: rgba(36,50,74,.55);
+}
+
+/* スマホ：左右を維持しつつ縮める */
+@media (max-width: 768px){
+  .hero--bg{ padding: 110px 16px 18px; padding-top: 130px; }
+
+  .hero__inner{
+    grid-template-columns: 1fr 0.9fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .hero__title{ font-size: 28px; line-height: 1.35; }
+  .hero__lead{ font-size: 14px; }
+
+  .hero__person{
+    max-width: none;
+    width: 140%;
+    transform: translateX(18%);
+  }
+
+  .hero__stats{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
