@@ -3660,6 +3660,12 @@ body {
     line-height: 1.6;
   }
 }
+@media (max-width: 768px){
+  .hero__content{
+    text-align: left;
+  }
+}
+
 
 
 
