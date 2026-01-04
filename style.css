@@ -3846,42 +3846,4 @@ body {
     gap: 10px;
   }
 }
-/* ===== 実績カード：スマホで横並び（3枚） ===== */
-.stat{
-  display: flex;
-  gap: 14px;
-}
 
-/* スマホ最適化 */
-@media (max-width: 768px){
-  .stat{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3枚横並び */
-    gap: 10px;
-    align-items: stretch;
-    margin-top: 16px;
-  }
-
-  .hero-stats .stat-card{
-    width: 100%;
-    min-width: 0;                 /* はみ出し防止 */
-    padding: 12px 10px;           /* 余白を圧縮 */
-    border-radius: 16px;
-  }
-
-  /* 数字が大きすぎて崩れる場合の保険 */
-  .hero-stats .stat-card .stat-num{
-    font-size: clamp(24px, 7vw, 34px);
-    line-height: 1.05;
-  }
-
-  .hero-stats .stat-card .stat-label{
-    font-size: 12px;
-    line-height: 1.2;
-  }
-
-  .hero-stats .stat-card .stat-note{
-    font-size: 10px;
-    opacity: .75;
-  }
-}
