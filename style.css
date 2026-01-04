@@ -4016,3 +4016,13 @@ body {
   .stat-value{ font-size: 24px; }
   .hero__img{ max-width: 190px; }
 }
+@media (max-width: 420px){
+  .hero__stats{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .stat-card{
+    flex: 0 0 140px; /* 1枚幅固定 */
+  }
+}
