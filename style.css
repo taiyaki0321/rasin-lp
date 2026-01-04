@@ -3643,7 +3643,12 @@ body {
     position: relative;
   }
 
-  
+  /* 人物を少し大きくして右寄せ感を出す */
+  .hero__image img{
+    width: 150%;
+    max-width: none;
+    transform: translateX(-25%);
+  }
 
   /* タイトル等が詰まるなら微調整 */
   .hero__title{
