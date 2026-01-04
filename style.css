@@ -4026,3 +4026,74 @@ body {
     flex: 0 0 140px; /* 1枚幅固定 */
   }
 }
+/* =========================
+   PC/スマホ共通：ヒーローを左寄せ基準に統一
+========================= */
+
+/* hero の中身を左基準にする */
+.hero__inner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* ← ここが重要：左寄せ */
+  gap: 40px;
+}
+
+/* 左テキストは左寄せ固定 */
+.hero__content {
+  text-align: left;
+}
+
+/* 右ビジュアル（画像やカードの塊）を右に寄りすぎないように */
+.hero__visual {
+  margin-left: auto; /* 右側へ置くが、hero全体は左基準 */
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 右画像がデカすぎて押してるなら上限つける */
+.hero__img {
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+}
+
+/* =========================
+   スマホ：1カラム＋左基準
+========================= */
+@media (max-width: 768px) {
+  .hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px 16px 40px;
+    gap: 16px;
+    overflow-x: hidden;
+  }
+
+  .hero__visual {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .hero__img {
+    max-width: 220px;
+  }
+
+  /* 実績カード：横並び（切れ防止） */
+  .hero__stats {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .hero__stats::-webkit-scrollbar { display: none; }
+
+  .stat-card {
+    flex: 0 0 140px;
+  }
+}
