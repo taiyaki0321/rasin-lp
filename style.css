@@ -4152,3 +4152,20 @@ body {
   .hero__person, .hero__img{ max-width: 200px !important; transform: translateX(-10%) !important; }
   .stat-value, .stat__value{ font-size: 22px !important; }
 }
+/* PCも人物の右寄せ感を弱める */
+@media (min-width: 769px){
+  .hero__person, .hero__img{
+    transform: translateX(0) !important;
+  }
+  .hero__inner{
+    justify-items: start;
+  }
+}
+
+/* ===== スマホ：上余白を最小化 ===== */
+@media (max-width: 768px){
+  .hero--bg{
+    padding-top: 84px;   /* ヘッダー分だけ */
+    padding-bottom: 24px;
+  }
+}
