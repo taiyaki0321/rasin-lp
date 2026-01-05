@@ -4255,6 +4255,23 @@ body {
     text-overflow: ellipsis;
   }
 }
+/* =========================
+   ヒーロー上部タグラインを強調
+   「就活生向け 自己理解ブートキャンプ」
+========================= */
+.hero__tagline{
+  display: inline-block;
+  font-size: 16px;              /* ← PCも確実に大きく */
+  font-weight: 900;
+  color: #1f4db6;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+
+  /* 見出し感を出す装飾 */
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(31, 77, 182, 0.08);
+}
 
 
 
