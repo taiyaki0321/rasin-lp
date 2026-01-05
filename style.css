@@ -4165,7 +4165,7 @@ body {
 /* ===== スマホ：上余白を最小化 ===== */
 @media (max-width: 768px){
   .hero--bg{
-    padding-top: 84px;   /* ヘッダー分だけ */
+    padding-top: 60px;   /* ヘッダー分だけ */
     padding-bottom: 24px;
   }
 }
