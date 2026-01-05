@@ -4183,4 +4183,11 @@ body {
     line-height: 1.75;
   }
 }
+.stat-card{
+  flex: 0 0 140px;
+}
+.stat-value{
+  font-size: 26px;
+}
+
 
