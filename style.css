@@ -4206,6 +4206,36 @@ body {
     font-size: 11px;
   }
 }
+.hero__tagline{
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 14px;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+
+  color: #1f4db6;
+  background: rgba(31, 77, 182, 0.1); /* 薄いブランドブルー */
+  border-radius: 999px;
+}
+.hero__tagline{
+  background: linear-gradient(
+    90deg,
+    rgba(31,77,182,0.15),
+    rgba(31,77,182,0.05)
+  );
+  box-shadow: 0 4px 10px rgba(31,77,182,0.15);
+}
+@media (max-width: 768px){
+  .hero__tagline{
+    font-size: 14px;
+    padding: 7px 14px;
+  }
+}
+
+
+
 
 
 
