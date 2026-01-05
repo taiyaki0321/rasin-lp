@@ -4234,6 +4234,28 @@ body {
   }
 }
 
+@media (max-width: 768px){
+  .header-actions{
+    gap: 8px;
+    min-width: 0;
+  }
+
+  /* 左（自己理解検定）は少しだけ控えめ */
+  .btn-diagnosis{
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  /* 右（無料相談）を大きく見せる */
+  .header__nav-cta{
+    padding: 11px 14px;
+    font-size: 13px;
+    max-width: 52vw;        /* ←大きくしても見切れないように */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 
 
 
