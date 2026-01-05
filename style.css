@@ -4183,11 +4183,29 @@ body {
     line-height: 1.75;
   }
 }
-.stat-card{
-  flex: 0 0 140px;
+@media (max-width: 768px){
+  .hero__stats{
+    gap: 12px;
+    padding-top: 6px;
+  }
+
+  .stat-card{
+    flex: 0 0 170px;   /* ← ここ重要 */
+    padding: 14px;
+  }
+
+  .stat-title{
+    font-size: 12px;
+  }
+
+  .stat-value{
+    font-size: 32px;  /* 数字は大きく */
+  }
+
+  .stat-note{
+    font-size: 11px;
+  }
 }
-.stat-value{
-  font-size: 26px;
-}
+
 
 
