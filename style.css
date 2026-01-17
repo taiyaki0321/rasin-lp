@@ -4273,6 +4273,20 @@ body {
   background: rgba(31, 77, 182, 0.08);
 }
 
+/* 悩み共感セクションの下余白を詰める */
+.problems {
+  padding-bottom: 60px; /* ← もともと大きい場合は減らす */
+}
+
+/* FINAL GOAL セクションの上余白を詰める */
+.final-goal {
+  padding-top: 40px;   /* ← ここが一番効く */
+}
+.final-goal__title {
+  margin-top: 0;
+}
+
+
 
 
 
