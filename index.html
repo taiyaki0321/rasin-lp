@@ -1,700 +1,446 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>就活の軸が定まる自己分析プログラム｜RASIN</title>
-  <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>就活の軸が定まる自己分析プログラム｜RASIN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-navy: #1a365d;
+            --sub-blue: #2c5282;
+            --accent-orange: #f6ad55;
+            --bg-light: #f7fafc;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+            --success-green: #48bb78;
+        }
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+        /* Base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans JP', sans-serif; color: var(--text-dark); line-height: 1.8; overflow-x: hidden; background: #fff; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* Header */
+        .header {
+            position: fixed; top: 0; width: 100%; height: 70px;
+            background: rgba(255,255,255,0.98); display: flex; align-items: center; 
+            justify-content: space-between; padding: 0 5%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .header__logo { font-weight: bold; font-size: 1.5rem; color: var(--main-navy); }
+        .header-actions { display: flex; gap: 10px; }
+        .btn-header { padding: 10px 15px; font-size: 13px; border-radius: 5px; font-weight: bold; }
+        .btn-diagnosis { border: 1px solid var(--main-navy); color: var(--main-navy); }
+        .btn-cta-small { background: var(--accent-orange); color: white; }
+
+        /* Hero */
+        /* Hero - 修正版 */
+        .hero {
+            padding: 140px 5% 80px;
+            background: radial-gradient(circle at 70% 50%, #fdfbfb 0%, #ebedee 100%);
+            overflow: hidden;
+        }
+        .hero__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hero__left {
+            flex: 1.2;
+            z-index: 2;
+        }
+        .hero__right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+        .hero__image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+        }
+        /* 写真の下部を背景に馴染ませる */
+        .hero__image-wrapper::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to top, #ebedee, rgba(235, 237, 238, 0));
+        }
+        .hero__women-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+        }
+        .hero__tagline { color: var(--sub-blue); font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; display: block; }
+        .hero__title { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.3; color: var(--main-navy); margin-bottom: 30px; }
+        .hero__title-main { display: block; font-size: 1.2em; color: var(--main-navy); }
+        .hero__description { font-size: 1.1rem; color: #4a5568; margin-bottom: 40px; }
+        /* Section Common */
+        section { padding: 80px 5%; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 50px; color: var(--main-navy); }
+        .section--gray { background: var(--bg-light); max-width: 100%; }
+
+        /* Problems */
+        .problems__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .problems-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border-left: 5px solid #cbd5e0; }
+        .problems-card__icon { font-size: 24px; margin-bottom: 10px; }
+
+        /* Final Goal */
+        .final-goal { display: flex; flex-wrap: wrap; background: var(--main-navy); color: white; border-radius: 20px; overflow: hidden; margin-top: 40px; }
+        .final-goal__left { flex: 1; min-width: 300px; padding: 50px; }
+        .final-goal__right { flex: 1; min-width: 300px; background: rgba(255,255,255,0.05); padding: 50px; display: flex; align-items: center; justify-content: center; }
+        .fg-highlight { color: var(--accent-orange); font-size: 1.5rem; font-weight: bold; }
+        .final-goal__list li { margin-bottom: 15px; position: relative; padding-left: 25px; }
+        .final-goal__list li::before { content: "✔"; position: absolute; left: 0; color: var(--accent-orange); }
+        .compass-card { background: white; color: var(--main-navy); padding: 30px; border-radius: 15px; text-align: center; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+
+        /* Program */
+        .program-item { border: 1px solid #e2e8f0; margin-bottom: 10px; border-radius: 10px; background: white; }
+        .program-question { width: 100%; padding: 20px; text-align: left; background: none; border: none; font-size: 1.1rem; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .program-answer { padding: 0 20px 20px; display: none; border-top: 1px solid #edf2f7; }
+        .program-subtitle { font-weight: bold; color: var(--sub-blue); margin-top: 15px; font-size: 0.9rem; }
+        .program-answer ul { margin-left: 20px; list-style: disc; font-size: 0.95rem; }
+
+        /* Price */
+        .price-card { background: white; border: 2px solid var(--accent-orange); border-radius: 20px; padding: 40px; position: relative; max-width: 600px; margin: 0 auto; }
+        .price-card__badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent-orange); color: white; padding: 5px 25px; border-radius: 20px; font-weight: bold; }
+
+        /* Flow Steps */
+        .flow-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .flow-card { background: white; padding: 30px; border-radius: 15px; text-align: center; position: relative; }
+        .flow-step-label { color: var(--accent-orange); font-weight: bold; margin-bottom: 10px; }
+
+        /* CTA Button */
+        .btn-primary { 
+            display: inline-block; background: var(--accent-orange); color: white; padding: 20px 50px; 
+            border-radius: 50px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 10px 20px rgba(246,173,85,0.4); 
+            transition: 0.3s; text-align: center;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(246,173,85,0.5); }
+
+        /* Footer */
+        .footer { background: var(--main-navy); color: white; padding: 50px 5%; text-align: center; }
+        .footer__links a { color: white; font-size: 12px; margin: 0 10px; opacity: 0.7; }
+        
+        .fixed-cta { position: fixed; bottom: 20px; width: 90%; left: 5%; z-index: 2000; max-width: 400px; left: 50%; transform: translateX(-50%); }
+
+        @media (max-width: 768px) {
+            .hero__stats { gap: 10px; }
+            .stat { min-width: 45%; padding: 15px; }
+            .final-goal__left, .final-goal__right { padding: 30px 20px; }
+        }
+        /* 統計エリアのレイアウト調整 */
+        .hero__stats-wrapper {
+            margin-top: 60px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+        .hero__stats { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+        .stat { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); min-width: 180px; }
+        .stat__label { font-size: 12px; color: #718096; }
+        .stat__value { font-size: 28px; font-weight: bold; color: var(--main-navy); }
+        .stat__value span { font-size: 16px; }
+        .hero__footnote { font-size: 11px; color: #a0aec0; }
+
+        /* スマホ用レイアウト調整を上書き */
+        @media (max-width: 768px) {
+            /* 縦並びにせず、横並びを維持する */
+            .hero__container {
+                display: flex;
+                flex-direction: row; /* 横並びを強制 */
+                align-items: center;
+                gap: 10px; /* 文字と写真の間隔を詰める */
+                padding: 0 10px;
+            }
+
+            .hero__left {
+                flex: 1.3; /* テキスト側の比率 */
+                text-align: left; /* 左寄せを維持 */
+            }
+
+            .hero__right {
+                flex: 1; /* 写真側の比率 */
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            /* スマホに合わせて文字サイズを全体的に小さく調整 */
+            .hero__tagline {
+                font-size: 0.7rem;
+                margin-bottom: 5px;
+            }
+            .hero__title {
+                font-size: 2rem !important; /* 強制的に小さくして1画面に収める */
+                margin-bottom: 10px;
+            }
+            .hero__description {
+                font-size: 0.75rem;
+                line-height: 1.4;
+                margin-bottom: 15px;
+            }
+            
+            /* ボタンもスマホサイズに */
+            .btn-primary {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* 写真のサイズを調整 */
+            .hero__image-wrapper {
+                max-width: 100%;
+            }
+            .hero__image-wrapper::after {
+                height: 50px; /* 足元のグラデーションをスマホ用に小さく */
+            }
+
+            /* 下の統計（数字）パーツも横並びにしたい場合 */
+            .hero__stats {
+                gap: 5px;
+            }
+            .stat {
+                min-width: 30%;
+                padding: 10px 5px;
+            }
+            .stat__value {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- 固定ヘッダー -->
-<header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-        <img src="img/rasin-logo.png" alt="RASINロゴ" class="header-logo-img" />
-      </a>
-    </div>
 
-    <div class="header-actions">
-      <!-- 診断ページ -->
-      <a href="/diagnosis/" class="btn btn-diagnosis">
-        自己理解検定
-      </a>
+    <header class="header">
+        <div class="header__logo">RASIN</div>
+        <div class="header-actions">
+            <a href="https://rasin-compass.com/diagnosis/" class="btn-header btn-diagnosis">自己理解検定</a>
+            <a href="https://lin.ee/MR1jOBx" class="btn-header btn-cta-small">無料相談</a>
+        </div>
+    </header>
 
-      <!-- CTA -->
-      <a
-        href="https://lin.ee/MR1jOBx"
-        class="header__nav-cta btn-hover-lift btn-bounce"
-        target="_blank"
-        rel="noopener"
-      >
-        無料相談を申し込む
-      </a>
-    </div>
-  </div>
-</header>
+    <section class="hero">
+        <div class="hero__container">
+            <div class="hero__left">
+                <span class="hero__tagline">就活生向け 自己理解ブートキャンプ</span>
+                <h1 class="hero__title">
+                    <span class="hero__title-main">就活の迷子をゼロに。</span>
+                    ”自分の道”がわかる<br>キャリアの羅針盤を
+                </h1>
+                <p class="hero__description">
+                    あなた専用の“キャリアの羅針盤”をつくり、<br>
+                    これから進む「就活の方向性」を２週間で明確にする伴走型プログラム
+                </p>
 
-
-  <!-- 固定下部CTA（スマホ想定） -->
-  <div class="bottom-cta">
-    <a href="#contact">まずは無料相談してみる</a>
-  </div>
-
-  <!-- ヒーロー -->
-
-<section class="hero hero--bg" id="top">
-
-  <div class="hero__inner">
-    <div class="hero__content">
-
-      
-      <p class="hero__tagline">就活生向け 自己理解ブートキャンプ</p>
-      <h1 class="hero__title">
-  <span class="hero__title-main">
-    就活の迷子をゼロに。
-  </span>
-  <span class="hero__title-sub">
-    ”自分の道”がわかるキャリアの羅針盤を
-  </span>
-</h1>
-
-      <p class="hero__description">
-        
-        あなた専用の“キャリアの羅針盤”をつくり<br />
-        これから進む「就活の方向性」を２週間で明確にする<br />
-        伴走型プログラム
-      </p>
-
-
-       <!-- 実績カードは hero__inner の外（重要） -->
-  <div class="hero__stats">
-    <div class="stat">
-      <div class="stat__label">自己理解検定 受検者</div>
-      <div class="stat__value">2,200<span>名</span></div>
-      <div class="stat__note">※1</div>
-    </div>
-    <div class="stat">
-      <div class="stat__label">LINE登録後の面談実施率</div>
-      <div class="stat__value">89<span>%</span></div>
-      <div class="stat__note">※2</div>
-    </div>
-    <div class="stat">
-      <div class="stat__label">満足度</div>
-      <div class="stat__value">93<span>%</span></div>
-      <div class="stat__note">※3</div>
-    </div>
-  </div>
-
-  <div class="hero__footnote">※1 自社集計 / ※2 自社集計 / ※3 参加者アンケートより</div>
-
-      <!-- 右側の女性画像 -->
-    
-  <!--</div>
-      <div class="hero__buttons">
-        <a href="https://lin.ee/MR1jOBx" class="btn btn--primary" target="_blank" rel="noopener">
-          LINEで無料相談してみる
-        </a>
-        <a href="#program" class="btn btn--outline">
-          2週間プログラムの内容を見る
-        </a>
-      </div>-->
-      <p class="hero__note">
-        ※オンライン完結／大学1〜4年・大学院生まで参加OK
-      </p>
-    </div>
-
-    
-</section>
-
-  <!-- 悩み共感セクション -->
-<section class="section problems" id="problems">
-  <div class="problems__inner">
-    <h2 class="problems__title">
-      <span class="text-strong">こんなモヤモヤ、ありませんか？</span>
-    </h2>
-
-    <div class="problems__divider"></div>
-
-    <div class="problems__cards">
-      <div class="problems-card">
-        <div class="problems-card__icon">👤</div>
-        <p class="problems-card__text">
-          やりたいことも、向いていることも<br>
-          よくわからない。
-        </p>
-      </div>
-
-      <div class="problems-card">
-        <div class="problems-card__icon">👤</div>
-        <p class="problems-card__text">
-          SNSや周りの優秀な人を見て<br>
-          焦るだけで動けない。
-        </p>
-      </div>
-
-      
-
-      <div class="problems-card">
-        <div class="problems-card__icon">👤</div>
-        <p class="problems-card__text">
-          学歴にコンプレックスがあり、<br>
-          大企業に内定できないかも、、、
-        </p>
-      </div>
-
-      <div class="problems-card">
-        <div class="problems-card__icon">👤</div>
-        <p class="problems-card__text">
-          就活の軸がなくて<br>
-          ESや面接で何を話せばいいか迷う。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- FINAL GOAL セクション -->
-<section class="final-goal">
-  <div class="final-goal__inner">
-
-    <div class="final-goal__left">
-      <h2 class="final-goal__title">
-        <span class="fg-highlight">2週間後、</span><br>
-        あなたは“自分の軸”を持ち、<br>
-        迷わず進める状態になります。
-      </h2>
-
-      <p class="final-goal__text">
-        就活の自己PR・OB訪問・インターン応募・キャリア相談など、  
-        <span class="fg-strong">すべての場面でそのまま使える“言語化された自分”</span>が手に入ります。
-      </p>
-
-      <ul class="final-goal__list">
-        <li>価値観TOP3 が明確になる</li>
-        <li>自分の強み3〜5つを説明できる</li>
-        <li>活躍できる環境・職種がはっきりする</li>
-        <li>将来の“キャリアの方向性（北極星）”が決まる</li>
-        <li>すぐ動ける行動プランを設計済み</li>
-      </ul>
-    </div>
-
-    <!-- 右側のレポート強調ブロック -->
-    <div class="final-goal__right">
-      <div class="compass-card">
-        <div class="compass-card__glow"></div>
-        <p class="compass-card__label">2週間後に手に入る</p>
-        <h3 class="compass-card__title">RASIN Compass Report</h3>
-        <p class="compass-card__sub">“あなただけの自己理解レポート”</p>
-        <img src="img/compass-report.jpg" class="compass-card__image" alt="RASIN Compass Report">
-      </div>
-    </div>
-
-  </div>
-</section>
-
-  <!-- RASINとは セクション -->
-<section class="section section--about" id="about">
-  <div class="section__inner">
-    <div class="about-block">
-      <!-- 背景のサークル -->
-      <div class="about-block__bg-circle"></div>
-
-      <div class="about-block__layout">
-        <!-- 左：見出し＆本文 -->
-        <div class="about-block__heading">
-          <p class="about-block__tagline">
-            18〜25歳の「方向性迷子」のための
-          </p>
-          <h2 class="section__title about-block__title">
-            RASIN（羅針）とは？
-          </h2>
-          <p class="about-block__lead">
-            就活の方向性がわからない大学生のための<br>
-            “キャリアの羅針盤づくり”自己理解プログラムです。
-          </p>
-          <p class="about-block__text">
-            RASINは、正解を押し付ける塾ではありません。
-            「この方向に進めば、自分らしく戦える」という<br>
-            自分の軸で決められる状態を一緒につくることです。<br>
-            「自己分析してもよくわからない」<br>
-「どの業界が自分に向いているのかわからない」<br>
-「とりあえず動いているけど、自信がない」<br>
-
-そんな “就活迷子” を、ゼロにします。
+                
             
-          </p>
+            </div>
+
+            <div class="hero__right">
+                <div class="hero__image-wrapper">
+                    <img src="img/women.jpg" alt="RASIN講師" class="hero__women-img">
+                </div>
+            </div>
         </div>
 
-        <!-- 右：対象・形式・期間のボックス -->
-        <div class="about-block__info">
-          <div class="about-pill">
-            <span class="about-pill__label">対象</span>
-            <span class="about-pill__text">大学1〜4年 / 大学院生</span>
-          </div>
-          <div class="about-pill">
-            <span class="about-pill__label">形式</span>
-            <span class="about-pill__text">オンライン 1on1</span>
-          </div>
-          <div class="about-pill">
-            <span class="about-pill__label">期間</span>
-            <span class="about-pill__text">2週間ブートキャンプ</span>
-          </div>
+        <div class="hero__stats-wrapper">
+            <div class="hero__stats">
+                <div class="stat"><div class="stat__label">自己理解検定 受検者</div><div class="stat__value">2,200<span>名</span></div></div>
+                <div class="stat"><div class="stat__label">面談実施率</div><div class="stat__value">89<span>%</span></div></div>
+                <div class="stat"><div class="stat__label">満足度</div><div class="stat__value">93<span>%</span></div></div>
+            </div>
+            <p style="margin-top: 20px; font-size: 13px; color: #718096;">
+                    ※オンライン完結／大学1〜4年・大学院生まで参加OK
+                </p>
+            <p class="hero__footnote">※1 自社集計 / ※2 自社集計 / ※3 参加者アンケートより</p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- 特徴 -->
-  <section class="section section--gray">
-    <div class="section__inner">
-      <h2 class="section__title">RASINの3つの特徴</h2>
-      <div class="grid grid--3">
-        <div class="feature">
-          <p class="feature__label">01</p>
-          <h3 class="feature__title">“方向性”に一点集中</h3>
-          <p class="feature__text">
-            やりたいこと探しではなく、<br />
-            あなたの価値観と強みから<br />
-            「進むべき方向」を一緒に見つけます。
-          </p>
-        </div>
-        <div class="feature">
-          <p class="feature__label">02</p>
-          <h3 class="feature__title">伴走型</h3>
-          <p class="feature__text">
-            1on1の個別対話で、<br />
-            本音で話せる・深くまで潜れる環境をつくります。
-          </p>
-        </div>
-        <div class="feature">
-          <p class="feature__label">03</p>
-          <h3 class="feature__title">行動まで設計</h3>
-          <p class="feature__text">
-            方向性を言語化して終わりではなく、<br />
-            1〜3ヶ月でできる“小さなチャレンジ”まで<br />
-            一緒に決めていきます。
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-    <section class="section" id="program">
-  <div class="section__inner">
-    <h2 class="section__title">2週間プログラムの内容</h2>
-
-    <div class="program-toggles">
-
-      <!-- Week0 -->
-      <div class="program-item">
-        <button class="program-question">
-          <span>Step0：事前準備「いまの自分を知る」</span>
-          <span class="program-icon">＋</span>
-        </button>
-        <div class="program-answer">
-          <p class="program-subtitle">▼ コンテンツ</p>
-          <ul>
-            <li>事前アンケート</li>
-            <li>人生ストーリー / 感情体験 / 当時の性格・価値観 / 興味</li>
-            <li>自己理解レベル診断（価値観 / 行動特性 / 強み / 向いてる環境）</li>
-          </ul>
-          <p class="program-subtitle">▼ ゴール</p>
-          <p>Step1の深掘りに必要な“自分の棚卸し”が完了する。</p>
-        </div>
-      </div>
-
-      <!-- Week1 -->
-      <div class="program-item">
-        <button class="program-question">
-          <span>Step1：強み＆弱み（自分の向いている環境の見える化）</span>
-          <span class="program-icon">＋</span>
-        </button>
-        <div class="program-answer">
-          <p class="program-subtitle">▼ やること</p>
-          <ul>
-            <li>得意シーンの棚卸し</li>
-            <li>周囲から言われてきた言葉の整理</li>
-            <li>性格傾向 / 行動特性 / 潰れやすい思考癖</li>
-            <li>向いてる環境・向かない環境の把握</li>
-            <li>強み3〜5つを言語化</li>
-          </ul>
-          <p class="program-subtitle">▼ ミニワーク</p>
-          <ul>
-            <li>自分らしい行動ログ</li>
-            <li>無理してた行動ログ</li>
-          </ul>
-          <p class="program-subtitle">▼ Step1の成果</p>
-          <p>自分の向いてる環境がわかる</p>
-        </div>
-      </div>
-
-      <!-- Week2 -->
-      <div class="program-item">
-        <button class="program-question">
-          <span>Step2：好きな環境（活躍できる環境の抽出）</span>
-          <span class="program-icon">＋</span>
-        </button>
-        <div class="program-answer">
-          <p class="program-subtitle">▼ やること</p>
-          <ul>
-            <li>時間を忘れて夢中になれるもの</li>
-            <li>周囲から言われてきた言葉の整理</li>
-            <li>性格傾向 / 行動特性 / 潰れやすい思考癖</li>
-            
-          </ul>
-          <p class="program-subtitle">▼ ミニワーク</p>
-          <ul>
-            <li>自分らしい行動ログ</li>
-            <li>無理してた行動ログ</li>
-          </ul>
-          <p class="program-subtitle">▼ Step3の成果</p>
-          <p>自分の活躍できる環境がわかる</p>
-        </div>
-      </div>
-
-      <!-- Week3 -->
-<div class="program-item">
-  <button class="program-question">
-    <span>Step3：方向性の決定（就活の軸が決まる週）</span>
-    <span class="program-icon">＋</span>
-  </button>
-  <div class="program-answer">
-    <p class="program-subtitle">▼ やること</p>
-    <ul>
-      <li>方向性候補を洗い出す</li>
-      <li>絶対に嫌な選択肢を除外</li>
-      <li>職種・業界・働き方を具体化</li>
-      <li>方向性案を1〜2個決定</li>
-      <li>必要スキル・経験を整理</li>
-    </ul>
-
-    <p class="program-subtitle">▼ ミニワーク</p>
-    <ul>
-      <li>魅力的だった仕事</li>
-      <li>嫌だと感じた業務</li>
-      <li>5年後の理想像</li>
-    </ul>
-
-    <p class="program-subtitle">▼ Step3の成果</p>
-    <p>自分に合った方向性が1〜2種決まり、やりたいこと（仮）が言えるようになる。</p>
-  </div>
-</div>
-
-<!-- Week4 -->
-<div class="program-item">
-  <button class="program-question">
-    <span>Step4：適性業界・業種の選定</span>
-    <span class="program-icon">＋</span>
-  </button>
-  <div class="program-answer">
-    <p class="program-subtitle">▼ やること</p>
-    <ul>
-      <li>向いている業界を3つ選定（価値観×強み×感情）</li>
-      <li>向いていない業界を2つ明確化</li>
-      <li>向いている職種を言語化</li>
-    </ul>
-
-    <p class="program-subtitle">▼ ワーク内容</p>
-    <ul>
-      <li>業界A・B・C：なぜ向いているか</li>
-      <li>業界X・Y：なぜ向いていないか</li>
-      <li>〇〇職・△△職：理由の言語化</li>
-    </ul>
-
-    <p class="program-subtitle">▼ Step4の成果</p>
-    <p>自分に合う「業界×職種」が明確になり、選択肢に迷わなくなる。</p>
-  </div>
-</div>
-
-<!-- Week5 -->
-<div class="program-item">
-  <button class="program-question">
-    <span>Step5：RASIN Compass Report 完成</span>
-    <span class="program-icon">＋</span>
-  </button>
-  <div class="program-answer">
-    <p class="program-subtitle">▼ やること</p>
-    <ul>
-      <li>STEP1〜4を統合したキャリア羅針盤レポート作成</li>
-      <li>自分専用の取扱説明書を完成</li>
-      <li>次に取るべきアクションを明確化</li>
-    </ul>
-
-    <p class="program-subtitle">▼ Step5の成果</p>
-    <p>自分の方向性と行動指針が言語化され、迷わず動ける状態になる。</p>
-  </div>
-</div>
-
-    </div>
-  </div>
-</section>
-
+    </section>
     
 
-  <section class="section" id="price">
-  <div class="section__inner section__inner--narrow">
-    <div class="price-section">
-      <p class="price-pill">2週間集中伴走プログラム</p>
-      <h2 class="section__title section__title--center">
-        無料相談でわかること
-      </h2>
-
-      <div class="price-card">
-        <div class="price-card__badge">初回募集</div>
-
-        <div class="price-card__body">
-          <p class="price-card__label">2週間集中・完全伴走プログラム</p>
-
-          <p class="price-card__main">
-            <!--<span class="price-card__yen">¥</span>-->
-            <!--<span class="price-card__num">49,800</span>-->
-            <!--<span class="price-card__tax">税込</span>-->
-          </p>
-
-          <p class="price-card__split">
-            （全5回セッション＋伴走サポート）<br />
-
-          </p>
-
-          <ul class="price-card__list">
-            <li>・自分でも気づいていない価値観・強みの言語化</li>
-            <li>・就活の軸 / 進む方向性の整理</li>
-            <li>・RASINの具体的な進め方とサポート内容</li>
-          </ul>
-
-          <a
-            href="https://lin.ee/MR1jOBx"
-            class="btn btn--primary btn-hover-lift btn-bounce price-card__btn"
-            target="_blank"
-            rel="noopener"
-          >
-            まずは無料相談で話してみる
-          </a>
-
-          <p class="price-card__note">
-            ※ 初回オンライン面談までは一切料金はかかりません。<br />
-            ※ 面談後、「今はまだ受けない」と決めてももちろん大丈夫です。
-          </p>
+    <section class="section--gray">
+        <h2 class="section-title">こんな<span style="color:var(--accent-orange)">モヤモヤ</span>、ありませんか？</h2>
+        <div class="problems__cards">
+            <div class="problems-card"><div class="problems-card__icon">👤</div>やりたいことも、向いていることもよくわからない。</div>
+            <div class="problems-card"><div class="problems-card__icon">👤</div>SNSや周りの優秀な人を見て焦るだけで動けない。</div>
+            <div class="problems-card"><div class="problems-card__icon">👤</div>学歴にコンプレックスがあり、大企業に内定できないかも、、、</div>
+            <div class="problems-card"><div class="problems-card__icon">👤</div>就活の軸がなくてESや面接で何を話せばいいか迷う。</div>
         </div>
-      </div>
+    </section>
+
+    <section>
+        <div class="final-goal">
+            <div class="final-goal__left">
+                <h2 class="final-goal__title"><span class="fg-highlight">2週間後、</span><br>あなたは“自分の軸”を持ち、迷わず進める状態になります。</h2>
+                <p style="margin-bottom: 25px; opacity: 0.9;">すべての場面でそのまま使える“言語化された自分”が手に入ります。</p>
+                <ul class="final-goal__list">
+                    <li>価値観TOP3 が明確になる</li>
+                    <li>自分の強み3〜5つを説明できる</li>
+                    <li>活躍できる環境・職種がはっきりする</li>
+                    <li>将来の“キャリアの方向性（北極星）”が決まる</li>
+                    <li>すぐ動ける行動プランを設計済み</li>
+                </ul>
+            </div>
+            <div class="final-goal__right">
+                <div class="compass-card">
+                    <p style="font-size: 12px; color: #718096;">2週間後に手に入る</p>
+                    <h3 style="margin: 10px 0;">RASIN Compass Report</h3>
+                    <p style="font-size: 14px; margin-bottom: 15px;">“あなただけの自己理解レポート”</p>
+                    <div style="background: #f0f4f8; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: #a0aec0;">[Report Image]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section--gray">
+        <div style="background: white; padding: 50px; border-radius: 20px;">
+            <p style="color: var(--accent-orange); font-weight: bold; text-align: center;">18〜25歳の「方向性迷子」のための</p>
+            <h2 class="section-title" style="margin-bottom: 30px;">RASIN（羅針）とは？</h2>
+            <p style="text-align: center; margin-bottom: 30px;">就活の方向性がわからない大学生のための“キャリアの羅針盤づくり”プログラムです。</p>
+            <div style="max-width: 700px; margin: 0 auto; color: #4a5568;">
+                <p>RASINは、正解を押し付ける塾ではありません。「この方向に進めば、自分らしく戦える」という自分の軸で決められる状態を一緒につくることです。「自己分析してもよくわからない」「どの業界が向いているか不明」「とりあえず動いているけど自信がない」そんな“就活迷子”を、ゼロにします。</p>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+                <span style="background: var(--bg-light); padding: 10px 20px; border-radius: 30px; font-size: 14px;">対象：大学1〜4年 / 大学院生</span>
+                <span style="background: var(--bg-light); padding: 10px 20px; border-radius: 30px; font-size: 14px;">形式：オンライン 1on1</span>
+                <span style="background: var(--bg-light); padding: 10px 20px; border-radius: 30px; font-size: 14px;">期間：2週間ブートキャンプ</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">RASINの3つの特徴</h2>
+        <div class="problems__cards">
+            <div class="problems-card"><h4 style="color:var(--accent-orange)">01</h4><strong>“方向性”に一点集中</strong><p style="font-size: 14px; margin-top:10px;">やりたいこと探しではなく、価値観と強みから「進むべき方向」を一緒に見つけます。</p></div>
+            <div class="problems-card"><h4 style="color:var(--accent-orange)">02</h4><strong>伴走型</strong><p style="font-size: 14px; margin-top:10px;">1on1の個別対話で、本音で話せる・深くまで潜れる環境をつくります。</p></div>
+            <div class="problems-card"><h4 style="color:var(--accent-orange)">03</h4><strong>行動まで設計</strong><p style="font-size: 14px; margin-top:10px;">言語化して終わりではなく、1〜3ヶ月でできる“小さなチャレンジ”まで一緒に決めます。</p></div>
+        </div>
+    </section>
+
+    <section class="section--gray" id="program">
+        <h2 class="section-title">2週間プログラムの内容</h2>
+        <div class="program-toggles">
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">Step0：事前準備「いまの自分を知る」 <span>＋</span></button>
+                <div class="program-answer">
+                    <p class="program-subtitle">▼ コンテンツ</p>
+                    <ul><li>事前アンケート</li><li>人生ストーリー / 感情体験 / 性格・価値観</li><li>自己理解レベル診断</li></ul>
+                    <p class="program-subtitle">▼ ゴール</p><p>Step1の深掘りに必要な“自分の棚卸し”が完了する。</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">Step1：強み＆弱み（自分の向いている環境の見える化） <span>＋</span></button>
+                <div class="program-answer">
+                    <p class="program-subtitle">▼ やること</p>
+                    <ul><li>得意シーンの棚卸し</li><li>周囲から言われてきた言葉の整理</li><li>性格傾向 / 行動特性</li><li>強み3〜5つを言語化</li></ul>
+                    <p class="program-subtitle">▼ Step1の成果</p><p>自分の向いてる環境がわかる</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">Step2：好きな環境（活躍できる環境の抽出） <span>＋</span></button>
+                <div class="program-answer">
+                    <p class="program-subtitle">▼ やること</p>
+                    <ul><li>時間を忘れて夢中になれるもの</li><li>性格傾向 / 行動特性 / 潰れやすい思考癖</li></ul>
+                    <p class="program-subtitle">▼ Step2の成果</p><p>自分の活躍できる環境がわかる</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">Step3：方向性の決定（就活の軸が決まる週） <span>＋</span></button>
+                <div class="program-answer">
+                    <p class="program-subtitle">▼ やること</p>
+                    <ul><li>方向性候補を洗い出す</li><li>職種・業界・働き方を具体化</li><li>方向性案を1〜2個決定</li></ul>
+                    <p class="program-subtitle">▼ Step3の成果</p><p>自分に合った方向性が決まり、やりたいことが言えるようになる。</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">Step4：適性業界・業種の選定 <span>＋</span></button>
+                <div class="program-answer">
+                    <p class="program-subtitle">▼ やること</p>
+                    <ul><li>向いている業界を3つ選定</li><li>向いていない業界を2つ明確化</li><li>向いている職種を言語化</li></ul>
+                    <p class="program-subtitle">▼ Step4の成果</p><p>自分に合う「業界×職種」が明確になり、選択肢に迷わなくなる。</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">Step5：RASIN Compass Report 完成 <span>＋</span></button>
+                <div class="program-answer">
+                    <p class="program-subtitle">▼ やること</p>
+                    <ul><li>キャリア羅針盤レポート作成</li><li>自分専用の取扱説明書を完成</li><li>次に取るべきアクションを明確化</li></ul>
+                    <p class="program-subtitle">▼ Step5の成果</p><p>迷わず動ける状態になる。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="price-card">
+            <div class="price-card__badge">初回募集</div>
+            <h2 style="text-align:center; margin-bottom:20px;">無料相談でわかること</h2>
+            <p style="text-align:center; color: #718096; margin-bottom: 20px;">2週間集中・完全伴走プログラム</p>
+            <ul style="margin-bottom: 30px;">
+                <li>・自分でも気づいていない価値観・強みの言語化</li>
+                <li>・就活の軸 / 進む方向性の整理</li>
+                <li>・RASINの具体的な進め方とサポート内容</li>
+            </ul>
+            <a href="https://lin.ee/MR1jOBx" class="btn-primary" style="width:100%; box-sizing:border-box;">まずは無料相談で話してみる</a>
+            <p style="font-size: 11px; color:#a0aec0; margin-top:15px; text-align:center;">※ 初回面談までは一切料金はかかりません。面談後の辞退も可能です。</p>
+        </div>
+    </section>
+
+    <section class="section--gray">
+        <h2 class="section-title">プログラム開始までの流れ</h2>
+        <div class="flow-steps">
+            <div class="flow-card"><div class="flow-step-label">STEP 1</div><div style="font-size:30px">📱</div><strong>公式LINE追加</strong></div>
+            <div class="flow-card"><div class="flow-step-label">STEP 2</div><div style="font-size:30px">📝</div><strong>事前アンケート</strong></div>
+            <div class="flow-card"><div class="flow-step-label">STEP 3</div><div style="font-size:30px">💬</div><strong>無料面談(60分)</strong></div>
+            <div class="flow-card"><div class="flow-step-label">STEP 4</div><div style="font-size:30px">🚀</div><strong>プログラム開始</strong></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">よくある質問</h2>
+        <div class="program-toggles">
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">自己分析がほぼ初めてでも大丈夫ですか？ <span>＋</span></button>
+                <div class="program-answer"><p>まったく問題ありません。過去の出来事を一緒に振り返るところから始めるので、「何もやってこなかった」と感じている方でも参加できます。</p></div>
+            </div>
+            <div class="program-item">
+                <button class="program-question" onclick="toggleFaq(this)">忙しくても2週間ついていけますか？ <span>＋</span></button>
+                <div class="program-answer"><p>週2回のセッション（約90分）と短時間のワークが中心です。個別相談の時間帯も柔軟に調整します。</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__links">
+            <a href="#">プライバシーポリシー</a> | <a href="#">利用規約</a> | <a href="#">特定商取引法に基づく表記</a>
+        </div>
+        <p style="margin-top:20px; font-weight:bold;">RASIN</p>
+        <p style="font-size:11px; opacity:0.6;">© RASIN Inc.</p>
+    </footer>
+
+    <div class="fixed-cta">
+        <a href="https://lin.ee/MR1jOBx" class="btn-primary" style="width:100%; padding: 15px; font-size: 1rem;">無料で相談してみる</a>
     </div>
-  </div>
-</section>
 
-
-
-
-  <!-- 受講者の声（ダミー） -->
-  <section class="section section--gray" id="voices">
-    <div class="section__inner">
-      <h2 class="section__title">受講者の声</h2>
-      <div class="grid grid--2">
-        <div class="voice-card">
-          <p class="voice-card__tag">大学3年生</p>
-          <p class="voice-card__text">
-            何となく「大企業に行かなきゃ」と思っていたのが、<br />
-            自分が大事にしたい働き方や価値観がはっきりして、<br />
-            志望業界自体がガラッと変わりました。
-          </p>
-        </div>
-        <div class="voice-card">
-          <p class="voice-card__tag">大学1年生</p>
-          <p class="voice-card__text">
-            まだ就活は先だと思っていましたが、<br />
-            方向性が見えたことで「今やるべきこと」が明確になり、<br />
-            長期インターンへの挑戦を決めました。
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-
-  <!-- ご相談〜4週間プログラム開始までの流れ -->
-<section class="section section--gray" id="flow">
-  <div class="section__inner section__inner--narrow">
-    <h2 class="section__title section__title--center">
-      ご相談〜2週間プログラム開始までの流れ
-    </h2>
-    <p class="section__lead section__lead--center">
-      まずは公式LINEでつながって、<br />
-      あなたの今の状況やモヤモヤをお聞きするところからスタートします。
-    </p>
-
-    <div class="flow-steps">
-      <!-- STEP1 -->
-      <div class="flow-card">
-        <p class="flow-step-label">STEP 1</p>
-        <div class="flow-icon">📱</div>
-        <h3 class="flow-card-title">公式LINEを追加</h3>
-        <p class="flow-card-text">
-          下の「無料相談を利用する」ボタンから<br />
-          RASIN［公式］LINEを友だち追加します。
-        </p>
-      </div>
-
-      <!-- STEP2 -->
-      <div class="flow-card">
-        <p class="flow-step-label">STEP 2</p>
-        <div class="flow-icon">📝</div>
-        <h3 class="flow-card-title">事前アンケートに回答</h3>
-        <p class="flow-card-text">
-          自分の状況や悩み、知りたいことを<br />
-          簡単なフォームでお送りいただきます。
-        </p>
-      </div>
-
-      <!-- STEP3 -->
-      <div class="flow-card">
-        <p class="flow-step-label">STEP 3</p>
-        <div class="flow-icon">💬</div>
-        <h3 class="flow-card-title">初回無料面談（60分）</h3>
-        <p class="flow-card-text">
-          オンラインで1対1の無料相談。<br />
-          モヤモヤの整理と、今後の方向性の仮説を一緒に考えます。
-        </p>
-      </div>
-
-      <!-- STEP4 -->
-      <div class="flow-card">
-        <p class="flow-step-label">STEP 4</p>
-        <div class="flow-icon">🚀</div>
-        <h3 class="flow-card-title">2週間プログラム開始</h3>
-        <p class="flow-card-text">
-          ご希望の方のみ、有料プログラムへ。<br />
-          1 on 1体制で2週間、本気で自己理解を深めていきます。
-        </p>
-      </div>
-    </div>
-
-    <p class="flow-note">
-      ※初回面談までは完全無料です。<br class="sp-only" />
-      無理な勧誘は一切ありません。
-    </p>
-  </div>
-</section>
-<section class="section">
-  <div class="section__inner">
-    <h2 class="section__title">よくある質問</h2>
-    <div class="faq">
-      
-      <div class="faq__item">
-        <button class="faq__question">
-          <span class="faq__question-text">
-            自己分析がほぼ初めてでも大丈夫ですか？
-          </span>
-          <span class="faq__icon">＋</span>
-        </button>
-        <div class="faq__answer">
-          <p>
-            まったく問題ありません。過去の出来事を一緒に振り返るところから始めるので、
-            「何もやってこなかった」と感じている方でも参加できます。
-          </p>
-        </div>
-      </div>
-
-      <div class="faq__item">
-        <button class="faq__question">
-          <span class="faq__question-text">
-            忙しくても2週間ついていけますか？
-          </span>
-          <span class="faq__icon">＋</span>
-        </button>
-        <div class="faq__answer">
-          <p>
-            週2回のセッション（約90分）と短時間のワークが中心です。
-            個別相談の時間帯も柔軟に調整します。
-          </p>
-        </div>
-      </div>
-
-      <div class="faq__item">
-        <button class="faq__question">
-          <span class="faq__question-text">
-            自分がどのくらい自己分析できているのかわからない
-          </span>
-          <span class="faq__icon">＋</span>
-        </button>
-        <div class="faq__answer">
-          <p>
-            弊社サービスの"自己理解検定"で自分の理解度レベルをチェック✅
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-  <!-- お問い合わせ / 申込 -->
-  <section id="lead" class="lead-cta">
-  <div class="lead-cta__inner">
-    <p class="lead-cta__tag">＼ まずは、LINEで気軽に話してみませんか？ ／</p>
-
-    <h2 class="lead-cta__title">
-      先着順で予約受付中<br />
-      無料オンライン相談
-    </h2>
-
-    <p class="section__lead section__lead--center">
-  「自分の方向性がわからない」「話を聞いてから決めたい」という方のために、<br />
-  RASIN公式LINEから、<span class="text-strong">無料オンライン相談</span>を行っています。
-</p>
-
-
-    <a
-      href="https://lin.ee/MR1jOBx"
-      class="lead-cta__button btn-pulse"
-      target="_blank"
-      rel="noopener"
-    >
-      無料相談を利用する
-    </a>
-
-    <p class="lead-cta__note">
-      ※ 各月先着〇名様まで／定員になり次第受付終了
-    </p>
-  </div>
-</section>
-
-  
-  <!-- /特定商取引法に基づく表記 -->
-
-  <footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__right">
-    <a href="/privacy.html">プライバシーポリシー</a> |
-  <a href="/terms.html">利用規約</a> |
-  <a href="/cancel.html" class="footer__link">キャンセルポリシー</a> |
-      <a href="tokushoho.html" class="footer__link">特定商取引法に基づく表記</a>
-    <p class="footer__logo">RASIN</p>
-  
-      <p class="footer__copy">© RASIN Inc.</p>
-    </div>
-  </div>
-</footer>
-
-<!-- 画面下固定CTA -->
-<div class="fixed-cta">
-  <a
-    href="https://lin.ee/MR1jOBx"
-    class="lead-cta__button cta-with-logo shine-button"
-    target="_blank"
-    rel="noopener"
-  >
-    
-    無料相談を利用する
-  </a>
-</div>
-
-<script src="script.js"></script>
+    <script>
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const span = btn.querySelector('span');
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                span.innerText = "＋";
+            } else {
+                answer.style.display = "block";
+                span.innerText = "－";
+            }
+        }
+    </script>
 </body>
 </html>
