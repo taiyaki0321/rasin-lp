@@ -154,67 +154,102 @@
 
         /* スマホ用レイアウト調整を上書き */
         @media (max-width: 768px) {
-            /* 縦並びにせず、横並びを維持する */
-            .hero__container {
-                display: flex;
-                flex-direction: row; /* 横並びを強制 */
-                align-items: center;
-                gap: 10px; /* 文字と写真の間隔を詰める */
-                padding: 0 10px;
-            }
+    /* 1. 全体の余白と横並びの維持 */
+    .hero {
+        padding: 100px 3% 40px; /* 上下の余白をスマホ用に調整 */
+    }
+    
+    .hero__container {
+        display: flex;
+        flex-direction: row; /* 横並びを絶対に維持 */
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+    }
 
-            .hero__left {
-                flex: 1.3; /* テキスト側の比率 */
-                text-align: left; /* 左寄せを維持 */
-            }
+    /* 2. テキストエリアの調整 */
+    .hero__left {
+        flex: 1.4; /* テキストを少し広めに */
+        z-index: 5;
+    }
 
-            .hero__right {
-                flex: 1; /* 写真側の比率 */
-                display: flex;
-                justify-content: flex-end;
-            }
+    .hero__tagline {
+        font-size: 0.65rem; /* キャッチコピーを小さく */
+        margin-bottom: 4px;
+    }
 
-            /* スマホに合わせて文字サイズを全体的に小さく調整 */
-            .hero__tagline {
-                font-size: 0.7rem;
-                margin-bottom: 5px;
-            }
-            .hero__title {
-                font-size: 2rem !important; /* 強制的に小さくして1画面に収める */
-                margin-bottom: 10px;
-            }
-            .hero__description {
-                font-size: 0.75rem;
-                line-height: 1.4;
-                margin-bottom: 15px;
-            }
-            
-            /* ボタンもスマホサイズに */
-            .btn-primary {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
+    .hero__title {
+        font-size: 1.3rem !important; /* タイトルがはみ出さないサイズ */
+        line-height: 1.3;
+        margin-bottom: 12px;
+        white-space: nowrap; /* 改行を防ぐ */
+    }
+    
+    /* 「羅針盤を」などの特定箇所で改行したい場合はここを調整 */
+    .hero__title-main {
+        font-size: 1.1em;
+    }
 
-            /* 写真のサイズを調整 */
-            .hero__image-wrapper {
-                max-width: 100%;
-            }
-            .hero__image-wrapper::after {
-                height: 50px; /* 足元のグラデーションをスマホ用に小さく */
-            }
+    .hero__description {
+        font-size: 0.7rem;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        color: #4a5568;
+    }
 
-            /* 下の統計（数字）パーツも横並びにしたい場合 */
-            .hero__stats {
-                gap: 5px;
-            }
-            .stat {
-                min-width: 30%;
-                padding: 10px 5px;
-            }
-            .stat__value {
-                font-size: 18px;
-            }
-        }
+    /* 3. 画像エリアの調整（右側に固定） */
+    .hero__right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    .hero__image-wrapper {
+        width: 130%; /* 少しはみ出させて大きく見せる（お好みで） */
+        max-width: none;
+        margin-right: -10%; /* 右端に寄せる */
+    }
+
+    .hero__image-wrapper::after {
+        height: 40px; /* 足元のグラデーションを薄く */
+    }
+
+    /* 4. ボタンの調整 */
+    .btn-primary {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+        width: auto;
+        min-width: 160px;
+    }
+
+    /* 5. 統計（数字）パーツを横に並べる */
+    .hero__stats {
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+        margin-top: 30px;
+    }
+    
+    .stat {
+        flex: 1;
+        min-width: 0; /* 幅を均等に */
+        padding: 10px 2px;
+    }
+    
+    .stat__label {
+        font-size: 9px;
+        white-space: nowrap;
+    }
+    
+    .stat__value {
+        font-size: 16px;
+    }
+    
+    .stat__value span {
+        font-size: 10px;
+    }
+}
     </style>
 </head>
 <body>
