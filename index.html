@@ -147,9 +147,9 @@
         }
         .hero__stats { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
         .stat { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); min-width: 180px; }
-        .stat__label { font-size: 12px; color: #718096; }
-        .stat__value { font-size: 28px; font-weight: bold; color: var(--main-navy); }
-        .stat__value span { font-size: 16px; }
+        .stat__label { font-size: 15px; color: #718096; }
+        .stat__value { font-size: 33px; font-weight: bold; color: var(--main-navy); }
+        .stat__value span { font-size: 18px; }
         .hero__footnote { font-size: 11px; color: #a0aec0; }
 
         /* スマホ用レイアウト調整を上書き */
@@ -255,7 +255,10 @@
 <body>
 
     <header class="header">
-        <div class="header__logo">RASIN</div>
+        <div class="header__logo" style="display: flex; align-items: center; gap: 7px;">
+        <span>RASIN</span>
+        <img src="img/rasin-logo.png" alt="RASIN ロゴ" style="height: 100px; width: auto; object-fit: contain;">
+    </div>
         <div class="header-actions">
             <a href="https://rasin-compass.com/diagnosis/" class="btn-header btn-diagnosis">自己理解検定</a>
             <a href="https://lin.ee/MR1jOBx" class="btn-header btn-cta-small">無料相談</a>
