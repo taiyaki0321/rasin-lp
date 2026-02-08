@@ -136,5 +136,95 @@
   </main>
 
   <script src="./diagnosis.js"></script>
+  <!-- Firebase SDKの読み込み -->
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js",
+        "firebase/firestore": "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "firebase/app";
+    import { getAuth, signInAnonymously } from "firebase/auth";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+    // 1. Firebase初期化（空文字のまま環境がキーを注入します）
+    const firebaseConfig = JSON.parse(__firebase_config);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'rasin-app';
+
+    // 2. 匿名認証
+    const initAuth = async () => {
+        try {
+            await signInAnonymously(auth);
+        } catch (error) {
+            console.error("Auth Error:", error);
+        }
+    };
+    initAuth();
+
+    /**
+     * Slackへの通知（Webhookを使用）
+     */
+    async function sendSlackNotification(data) {
+        const SLACK_WEBHOOK_URL = "YOUR_SLACK_WEBHOOK_URL_HERE"; // ★ここにSlackのURLを入れる
+        
+        const message = {
+            text: "🔔 *自己理解検定の受検完了通知*",
+            attachments: [{
+                color: "#1a365d",
+                fields: [
+                    { title: "スコア", value: `${data.score}点`, short: true },
+                    { title: "判定", value: data.grade, short: true },
+                    { title: "受検日時", value: new Date().toLocaleString(), short: false }
+                ]
+            }]
+        };
+
+        try {
+            await fetch(SLACK_WEBHOOK_URL, {
+                method: 'POST',
+                body: JSON.stringify(message),
+                mode: 'no-cors' 
+            });
+        } catch (e) {
+            console.warn("Slack通知失敗");
+        }
+    }
+
+    /**
+     * 診断完了時に結果をDBに保存する関数
+     * diagnosis.jsから呼び出されることを想定
+     */
+    window.saveDiagnosisResult = async function(score, grade) {
+        const user = auth.currentUser;
+        if (!user) return;
+
+        const data = {
+            uid: user.uid,
+            score: score,
+            grade: grade,
+            createdAt: serverTimestamp(),
+            device: navigator.userAgent
+        };
+
+        try {
+            // DB保存
+            await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'diagnoses'), data);
+            // Slack通知
+            await sendSlackNotification(data);
+            console.log("Result saved successfully.");
+        } catch (e) {
+            console.error("Save Error:", e);
+        }
+    };
+  </script>
+</body>
 </body>
 </html>

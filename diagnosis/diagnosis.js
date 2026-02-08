@@ -252,6 +252,12 @@ el.backBtn.onclick = () => {
   render();
 };
 
+// diagnosis.js 内のスコア計算が終わったあたりに追加
+if (window.saveDiagnosisResult) {
+    window.saveDiagnosisResult(currentScore, currentGrade); // 変数名はjsの定義に合わせて変えてください
+}
+
+
 el.nextBtn.onclick = () => {
   if (!canGoNext()){
     alert("回答を選んでから次へ進んでください");
