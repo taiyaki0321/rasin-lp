@@ -28,15 +28,16 @@ const el = {
 // ✅ ここをあなたの28問に差し替え
 // type: "scale" (1-7), "single" (選択), "ab" (A/B), "text" (短文)
 const QUESTIONS = [
-  { section:"A", type:"scale", text:"私は自分の価値観TOP3を、理由付きで説明できる" },
+  { section:"A", type:"scale", text:"私は自分自身の仕事を選ぶ上での価値観TOP3を、理由付きで説明できる" },
   { section:"A", type:"scale", text:"私は自分の強みを、具体的な行動レベルで説明できる" },
+  
   {
     section:"B", type:"single",
-    text:"直近3ヶ月で、自己理解を深めるためにやったこと",
+    text:"直近3ヶ月で、自己分析のためにやったこと",
     options:[
-      { label:"何もしていない", score:0 },
-      { label:"記事・動画を見た", score:2 },
-      { label:"ワーク（自分史・価値観整理）をやった", score:3 },
+      { label:"全く何もしていない", score:-3 },
+      { label:"記事・動画を見た", score:0 },
+      { label:"ワーク（自分史・モチベーショングラフ）をやった", score:3 },
       { label:"人に話してフィードバックをもらった", score:4 },
     ]
   },
