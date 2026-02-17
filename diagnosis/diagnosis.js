@@ -37,7 +37,7 @@ const QUESTIONS = [
     options:[
       { label:"全く何もしていない", score:-3 },
       { label:"記事・動画を見た", score:0 },
-      { label:"ワーク（自分史・モチベーショングラフ）をやった", score:3 },
+      { label:"ワーク（自分史・モチベーショングラフ）をやった", score:2 },
       { label:"人に話してフィードバックをもらった", score:4 },
     ]
   },
